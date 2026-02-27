@@ -1,0 +1,165 @@
+---
+import Layout from '@layouts/Layout.astro';
+import chimie from 'src/assets/images/chimie/chimie_friends.jpg';
+import brique from 'src/assets/images/brique/briquemock.jpg';
+import { Picture } from 'astro:assets';
+
+const projectsData = [
+    {
+        image: chimie,
+        title: 'Chimie',
+        description: 'Brand Identity, Web Design, and Strategy',
+        slug: 'chimie'
+    },
+    {
+        image: brique,
+        title: 'Brique par Brique',
+        description: 'Project Description',
+        slug: 'briqueparbrique'
+    },
+    { image: chimie, title: 'Project 3', description: 'Description 3', slug: 'chimie' },
+    { image: chimie, title: 'Project 4', description: 'Description 4', slug: 'chimie' },
+    { image: chimie, title: 'Project 5', description: 'Description 5', slug: 'chimie' }
+];
+
+// Start with just 2 copies
+const projects = [...projectsData, ...projectsData];
+const projectCount = projectsData.length;
+---
+
+<Layout title="Applied Archive Atelier">
+    <div class="grid grid-cols-12 gap-gutter pt-70">
+        <div
+            class="sticky top-80 col-span-3 col-start-2 flex aspect-4/3 h-fit flex-col items-start justify-center pt-20 text-[36px] leading-[90%] font-bold tracking-[-5%]"
+        >
+            <div
+                class="w-fit rounded-full bg-black pt-1 pr-4.5 pb-0.5 pl-4.5 text-[18px] font-medium text-white"
+            >
+                <span id="project-number">01</span>
+            </div>
+            <h1 id="project-title" class="pt-5">Chimie</h1>
+            <h2 id="project-description" class="text-[#949494]">
+                Brand Identity, Web Design, and Strategy
+            </h2>
+        </div>
+
+        <div id="projects-container" class="col-span-6 col-start-6 flex flex-col gap-0">
+            {
+                projects.map((project, index) => (
+                    <a
+                        class="image-container flex aspect-4/3 overflow-hidden rounded-2xl"
+                        data-index={index % projectCount}
+                        data-title={project.title}
+                        data-description={project.description}
+                        href={`/${project.slug}`}
+                    >
+                        <Picture
+                            src={project.image}
+                            alt={project.title}
+                            class="h-full w-full object-cover"
+                        />
+                    </a>
+                ))
+            }
+        </div>
+    </div>
+    <script
+        define:vars={{
+            projectsData: JSON.stringify(
+                projectsData.map((p) => ({
+                    title: p.title,
+                    description: p.description,
+                    image: p.image.src,
+                    slug: p.slug
+                }))
+            ),
+            projectCount
+        }}
+    >
+        const container = document.getElementById('projects-container');
+        const projectTitle = document.getElementById('project-title');
+        const projectDescription = document.getElementById('project-description');
+        const projectNumber = document.getElementById('project-number');
+
+        const projects = JSON.parse(projectsData);
+
+        function updateTransforms() {
+            const imageContainers = document.querySelectorAll('.image-container');
+            const viewportHeight = window.innerHeight;
+            const viewportCenter = viewportHeight / 2;
+
+            let closestContainer = null;
+            let closestDistance = Infinity;
+
+            imageContainers.forEach((container) => {
+                const rect = container.getBoundingClientRect();
+                const containerCenter = rect.top + rect.height / 2;
+                const distanceFromCenter = Math.abs(containerCenter - viewportCenter);
+
+                const normalizedDistance = Math.max(
+                    -1,
+                    Math.min(1, (containerCenter - viewportCenter) / viewportCenter)
+                );
+                const rotateXAngle = normalizedDistance * 60;
+                const scale = 1 - Math.abs(normalizedDistance) * 0.15;
+
+                container.style.transform = `perspective(1200px) rotateX(${rotateXAngle}deg) scale(${scale})`;
+
+                if (distanceFromCenter < closestDistance) {
+                    closestDistance = distanceFromCenter;
+                    closestContainer = container;
+                }
+            });
+
+            if (closestContainer) {
+                const index = parseInt(closestContainer.dataset.index);
+                const title = closestContainer.dataset.title;
+                const description = closestContainer.dataset.description;
+
+                projectNumber.textContent = String(index + 1).padStart(2, '0');
+                projectTitle.textContent = title;
+                projectDescription.textContent = description;
+            }
+
+            // Dynamically add more projects when near the end
+            const imageContainers2 = document.querySelectorAll('.image-container');
+            const lastContainer = imageContainers2[imageContainers2.length - 1];
+            const lastRect = lastContainer.getBoundingClientRect();
+
+            if (lastRect.top < window.innerHeight * 2) {
+                addMoreProjects();
+            }
+        }
+
+        function addMoreProjects() {
+            const currentCount = document.querySelectorAll('.image-container').length;
+
+            if (currentCount % projectCount !== 0) return;
+
+            projects.forEach((project, idx) => {
+                const link = document.createElement('a');
+                link.href = `/${project.slug}`;
+                link.className =
+                    'image-container flex aspect-4/3 rounded-2xl overflow-hidden cursor-pointer';
+                link.dataset.index = idx % projectCount;
+                link.dataset.title = project.title;
+                link.dataset.description = project.description;
+                link.dataset.transitionName = `project-image-${idx % projectCount}`;
+
+                link.innerHTML = `<img src="${project.image}" alt="${project.title}" class="w-full h-full object-cover" />`;
+
+                container.appendChild(link);
+            });
+        }
+
+        updateTransforms();
+        window.addEventListener('scroll', updateTransforms, { passive: true });
+    </script>
+
+    <style>
+        .image-container {
+            transform-origin: center;
+            transition: transform 0.1s ease-out;
+        }
+    </style>
+</Layout>

@@ -1,0 +1,132 @@
+---
+import Layout from '@layouts/Layout.astro';
+import Icon from '@components/Icon/Icon.astro';
+import Blocks from '@components/Blocks/Blocks.astro';
+import Image from '@components/Image/Image.astro';
+import briqueHeader from '@images/brique/briqueposter.png';
+import briquePaper from '@images/brique/brique_paper.png';
+import briqueMock from '@images/brique/briquemock.jpg';
+
+import { Vimeo } from 'astro-embed';
+import { Picture } from 'astro:assets';
+import { MuxPlayer } from '@mux/mux-player-astro';
+
+// Define the blocks for this post. This could be fetched from a CMS.
+---
+
+<Layout title="Chimie">
+    <header class="flex h-fit w-full flex-col items-center justify-center gap-20 pt-96 pr-3 pl-3">
+        <div
+            class="grid grid-cols-12 gap-3 text-center text-[60px] leading-[100%] font-bold tracking-tighter"
+        >
+            <div class="col-span-6 col-start-4 pb-5">
+                An identity for a community-driven campaign to build something that lasts.
+            </div>
+        </div>
+        <div
+            class="flex flex-row items-center justify-items-center gap-1 pb-80 text-[16px] leading-5 tracking-[-0.03em]"
+        >
+            <div
+                class="flex rounded-full bg-gray-100 pt-2 pr-5 pb-2 pl-5 text-center font-normal text-black"
+            >
+                Identity
+            </div>
+            <div
+                class="flex rounded-full bg-gray-100 pt-2 pr-5 pb-2 pl-5 text-center font-normal text-black"
+            >
+                Campaign
+            </div>
+        </div>
+
+        <Image
+            src={briqueHeader}
+            alt="Chimie logo on cement wall"
+            class="col-span-12 w-full overflow-clip rounded-2xl"
+        />
+
+        <div class="pt-52 pr-3 pl-3">
+            <div
+                class="h-fit w-full items-center justify-center pb-10 text-center text-[16px] font-medium tracking-tight"
+            >
+                Project Information
+            </div>
+            <div class="grid grid-cols-12 gap-gutter pb-72">
+                <div
+                    class="col-span-8 col-start-3 text-center text-[42px] leading-[100%] font-bold tracking-tighter text-black"
+                >
+                    Brique par Brique set out to raise $5M in community bonds to build a new
+                    community center — and needed a campaign that could make people feel personally
+                    invested in making it happen. We created a series of posters and social ads
+                    built around a simple but disarming idea: something is missing until you show
+                    up.
+                </div>
+            </div>
+        </div>
+    </header>
+    <div class="grid grid-cols-12 gap-3 pr-3 pb-3 pl-3">
+        <div class="col-span-9 flex flex-col gap-3 4xl:col-span-10">
+            <div class="flex h-fit w-full">
+                <Picture
+                    src={briquePaper}
+                    alt="Chimie logo on cement wall"
+                    class="w-full rounded-2xl [&_img]:h-auto [&_img]:w-full"
+                    aspect="1.77777778"
+                    layout="full-width"
+                />
+            </div>
+
+            <div class="flex h-fit w-full overflow-clip rounded-2xl">
+                <MuxPlayer
+                    playbackId="3hAvy5FDS01d02jXr6SMDetl1NxVOtBDHYOUUvwadzq00s"
+                    autoplay="muted"
+                    loop
+                    style="--controls:none;--media-object-fit: cover"
+                />
+            </div>
+
+            <div class="h-fit w-full">
+                <Picture
+                    src={briqueMock}
+                    alt="Chimie logo on cement wall"
+                    class="w-full rounded-2xl"
+                    aspect="1.77777778"
+                    layout="full-width"
+                />
+            </div>
+        </div>
+        <div
+            class="sticky top-4 col-span-3 flex h-fit flex-col rounded-2xl bg-gray-100 p-6 text-[13px] 4xl:col-span-2"
+        >
+            <div class="flex flex-col gap-0 leading-4">
+                <p class="font-medium text-black">Challenge</p>
+                <p class="pb-10 font-normal text-[#4D4D4D]">
+                    Establish Chimie as a serious player in the artisanal perfume world<br />
+                    Create a cohesive brand across digital, print, and physical experience<br />
+                    Build community through events and social presence<br />
+                    Launch e-commerce that reflects the tactile, sensory nature of perfume<br />
+                </p>
+
+                <div class="flex flex-col gap-0">
+                    <p class="font-medium text-black">Credits</p>
+                    <p class="pb-48 font-normal text-[#4D4D4D]">
+                        Creative Direction, Graphic Design, Web Design:<br />
+                        Jean-Julien Hazoumé
+                    </p>
+                </div>
+                <div class="flex flex-row gap-4">
+                    <div>
+                        <p class="font-medium text-black">Date</p>
+                        <p class="font-normal text-[#4D4D4D]">2023</p>
+                    </div>
+                    <div>
+                        <p class="font-medium text-black">Links</p>
+                        <div class="flex flex-row gap-3">
+                            <a class="font-normal text-[#4D4D4D] underline"> Instagram </a>
+                            <a class="font-normal text-[#4D4D4D] underline"> Website </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</Layout>

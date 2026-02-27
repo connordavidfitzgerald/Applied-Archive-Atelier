@@ -12,16 +12,18 @@
 :root {
     --color-primary: colorCode('black');
     --color-secondary: colorCode('white');
+    --custom-font-sans: 'ABC Favorit', sans-serif;
 }
 
 html {
     font-family: var(--font-sans);
-    font-weight: 500;
 }
 
 body {
     background: var(--color-secondary);
     color: var(--color-primary);
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
 }
 
 ::selection {

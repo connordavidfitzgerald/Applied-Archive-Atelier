@@ -1,66 +1,246 @@
 ---
 import Layout from '@layouts/Layout.astro';
-import Button from '@components/Button/Button.astro';
-import Wysiwyg from '@components/Wysiwyg/Wysiwyg.astro';
-import Accordion from '@components/Accordion/Accordion.astro';
+import chimie from 'src/assets/images/chimie/chimie_friends.jpg';
+import brique from 'src/assets/images/brique/briquemock.jpg';
+import ctrl from 'src/assets/images/ctrl/ctrl_phone.jpg';
+import ecozoic from 'src/assets/images/ecozoic/ecozoic.png';
+import { Picture } from 'astro:assets';
 ---
 
-<Layout title="Welcome to the Locomotive Astro Boilerplate.">
-    <header class="container">
-        <h1 class="heading-lg">Welcome to the Locomotive Astro Boilerplate.</h1>
-    </header>
+<style>
+    .project-thumbnail {
+        transition: transform 0.3s ease-out;
+    }
 
-    <div class="container mt-fluid-xl">
-        <div class="grid grid-cols-12 gap-gutter">
-            <div class="text-body col-span-full md:col-span-4">
-                <Wysiwyg>
-                    <Fragment
-                        set:html={`<p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Itaque quam, nam omnis sunt laudantium tenetur obcaecati? Inventore eos vitae id repellat cum possimus voluptates nam voluptatum, assumenda, atque nesciunt debitis?</p>`}
-                    />
-                </Wysiwyg>
+    /* Center project (1st) scaling */
+    .project-thumbnail:nth-child(1):hover {
+        transform: translateY(-10px);
+    }
 
-                <Button href="/about" class="mt-fluid-sm"> Learn More </Button>
-            </div>
+    .project-thumbnail:nth-child(1):hover ~ .project-thumbnail:nth-child(2),
+    .project-thumbnail:nth-child(2):hover ~ .project-thumbnail:nth-child(1) {
+    }
 
-            <div class="col-span-full text-body-sm md:col-span-4">
-                <Wysiwyg tag="article">
-                    <Fragment
-                        set:html={`<p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Itaque quam, nam omnis sunt laudantium tenetur obcaecati? Inventore eos vitae id repellat cum possimus voluptates nam voluptatum, assumenda, atque nesciunt debitis?</p>`}
-                    />
-                    <Button href="https://google.ca" target="_blank" class="mt-fluid-sm">
-                        Visit Us
-                    </Button>
-                </Wysiwyg>
-            </div>
+    /* 2nd project scaling */
+    .project-thumbnail:nth-child(2):hover {
+        transform: translateY(-10px);
+    }
 
-            <div class="col-span-full text-body-sm md:col-span-4">
-                <Wysiwyg>
-                    <Fragment
-                        set:html={`<p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Itaque quam, nam omnis sunt laudantium tenetur obcaecati? Inventore eos vitae id repellat cum possimus voluptates nam voluptatum, assumenda, atque nesciunt debitis?</p>`}
-                    />
-                </Wysiwyg>
-            </div>
+    .project-thumbnail:nth-child(2):hover ~ .project-thumbnail:nth-child(3),
+    .project-thumbnail:nth-child(3):hover ~ .project-thumbnail:nth-child(2) {
+    }
 
-            <div class="col-span-full text-body-sm md:col-span-4">
-                <Accordion label="Accordion summary">
-                    <Wysiwyg>
-                        <Fragment
-                            set:html={`<p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Itaque quam, nam omnis sunt laudantium tenetur obcaecati? Inventore eos vitae id repellat cum possimus voluptates nam voluptatum, assumenda, atque nesciunt debitis?</p>`}
+    /* 3rd project (middle) scaling */
+    .project-thumbnail:nth-child(3):hover {
+        transform: translateY(-10px);
+    }
+
+    .project-thumbnail:nth-child(3):hover ~ .project-thumbnail:nth-child(4),
+    .project-thumbnail:nth-child(4):hover ~ .project-thumbnail:nth-child(3) {
+    }
+
+    /* 4th project scaling */
+    .project-thumbnail:nth-child(4):hover {
+        transform: translateY(-10px);
+    }
+
+    .project-thumbnail:nth-child(4):hover ~ .project-thumbnail:nth-child(5),
+    .project-thumbnail:nth-child(5):hover ~ .project-thumbnail:nth-child(4) {
+    }
+
+    /* Last project scaling */
+    .project-thumbnail:nth-child(5):hover {
+        transform: translateY(-5px);
+    }
+
+    /* Large image displays */
+    .project-display {
+        opacity: 0;
+        pointer-events: none;
+        transition: opacity 0.3s ease-out;
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        display: grid;
+        grid-template-columns: repeat(12, 1fr);
+        align-items: center;
+        padding-bottom: 5rem;
+    }
+
+    .project-display > div:first-child {
+        grid-column: 1 / -1;
+        position: absolute;
+        width: 100%;
+    }
+
+    .project-display > div:last-child {
+        grid-column: 2 / span 10;
+        display: flex;
+        overflow: hidden;
+        border-radius: 1.5rem;
+        aspect-ratio: 16 / 9;
+    }
+
+    .projects-container:has(.project-thumbnail:nth-child(1):hover) .project-display:nth-of-type(1) {
+        opacity: 1;
+    }
+
+    .projects-container:has(.project-thumbnail:nth-child(2):hover) .project-display:nth-of-type(2) {
+        opacity: 1;
+    }
+
+    .projects-container:has(.project-thumbnail:nth-child(3):hover) .project-display:nth-of-type(3) {
+        opacity: 1;
+    }
+
+    .projects-container:has(.project-thumbnail:nth-child(4):hover) .project-display:nth-of-type(4) {
+        opacity: 1;
+    }
+
+    .projects-container:has(.project-thumbnail:nth-child(5):hover) .project-display:nth-of-type(5) {
+        opacity: 1;
+    }
+</style>
+
+<Layout title="Applied Archive Atelier">
+    <div class="projects-container">
+        <div class="grid h-screen grid-cols-12 justify-center gap-3">
+            <h1
+                class="col-span-6 col-start-4 flex items-center justify-center pb-10 pb-20 text-center text-[24px] leading-[100%] font-bold tracking-[-5%] text-[#959595]"
+            >
+                Applied Archive Atelier amplifies positive-impact projects through comprehensive
+                design. By speaking through collective practice — not to individual authorship — we
+                develop patterns for the whole system.
+            </h1>
+            <div class="absolute grid h-full w-full grid-cols-12 items-center pb-20">
+                <div class="project-display">
+                    <div
+                        class="absolute h-fit w-full pb-20 text-center text-[20px] leading-[100%] font-bold tracking-[-5%] text-white mix-blend-exclusion"
+                    >
+                        Chimie<br />
+                        Identity, Strategy, Web Design
+                    </div>
+                    <div
+                        class="col-span-8 col-start-3 flex aspect-video overflow-hidden rounded-3xl"
+                    >
+                        <Picture
+                            src={chimie}
+                            alt="Chimie Project Thumbnail"
+                            class="h-full w-full object-cover"
                         />
-                    </Wysiwyg>
-                </Accordion>
-                <Accordion label="Accordion summary">
-                    <Wysiwyg>
-                        <Fragment
-                            set:html={`<p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Itaque quam, nam omnis sunt laudantium tenetur obcaecati? Inventore eos vitae id repellat cum possimus voluptates nam voluptatum, assumenda, atque nesciunt debitis?</p>`}
+                    </div>
+                </div>
+                <div class="project-display">
+                    <div
+                        class="absolute h-fit w-full pb-20 text-center text-[20px] leading-[100%] font-bold tracking-[-5%] text-white mix-blend-exclusion"
+                    >
+                        Brique par Brique<br />
+                        Identity, Strategy, Web Design
+                    </div>
+                    <div
+                        class="col-span-8 col-start-3 flex aspect-video overflow-hidden rounded-3xl"
+                    >
+                        <Picture
+                            src={brique}
+                            alt="Brique par brique Project Thumbnail"
+                            class="h-full w-full object-cover"
                         />
-                    </Wysiwyg>
-                </Accordion>
+                    </div>
+                </div>
+                <div class="project-display">
+                    <div
+                        class="absolute h-fit w-full pb-20 text-center text-[20px] leading-[100%] font-bold tracking-[-5%] text-white mix-blend-exclusion"
+                    >
+                        CTRL+ALT<br />
+                        Identity, Strategy, Web Design
+                    </div>
+                    <div
+                        class="col-span-8 col-start-3 flex aspect-video overflow-hidden rounded-3xl"
+                    >
+                        <Picture
+                            src={ctrl}
+                            alt="CTRL+ALT Project Thumbnail"
+                            class="h-full w-full object-cover"
+                        />
+                    </div>
+                </div>
+                <div class="project-display">
+                    <div
+                        class="absolute h-fit w-full pb-20 text-center text-[20px] leading-[100%] font-bold tracking-[-5%] text-white mix-blend-exclusion"
+                    >
+                        Ecozoic<br />
+                        Identity, Strategy, Web Design
+                    </div>
+                    <div
+                        class="col-span-8 col-start-3 flex aspect-video overflow-hidden rounded-3xl"
+                    >
+                        <Picture
+                            src={ecozoic}
+                            alt="Ecozoic Project Thumbnail"
+                            class="h-full w-full object-cover"
+                        />
+                    </div>
+                </div>
+                <div class="project-display">
+                    <div
+                        class="absolute h-fit w-full pb-20 text-center text-[20px] leading-[100%] font-bold tracking-[-5%] text-white mix-blend-exclusion"
+                    >
+                        Chimie<br />
+                        Identity, Strategy, Web Design
+                    </div>
+                    <div
+                        class="col-span-8 col-start-3 flex aspect-video overflow-hidden rounded-3xl"
+                    >
+                        <Picture
+                            src={chimie}
+                            alt="Chimie Project Thumbnail"
+                            class="h-full w-full object-cover"
+                        />
+                    </div>
+                </div>
             </div>
         </div>
 
-        <!-- Placeholder -->
-        <div class="mt-fluid-xl h-[50vh] w-full bg-black opacity-50"></div>
-        <div class="bg-grey mt-fluid-xl h-[50vh] w-full"></div>
+        <div class="fixed bottom-3 flex h-1/8 w-full justify-center">
+            <div class="flex flex-row justify-center gap-1">
+                <div class="project-thumbnail aspect-3/4 overflow-hidden rounded-2xl object-cover">
+                    <Picture
+                        src={chimie}
+                        alt="Chimie Project Thumbnail"
+                        class="h-full w-full object-cover"
+                    />
+                </div>
+                <div class="project-thumbnail aspect-3/4 overflow-hidden rounded-2xl object-cover">
+                    <Picture
+                        src={brique}
+                        alt="Brique par brique Project Thumbnail"
+                        class="h-full w-full object-cover"
+                    />
+                </div>
+                <div class="project-thumbnail aspect-3/4 overflow-hidden rounded-2xl object-cover">
+                    <Picture
+                        src={ctrl}
+                        alt="CTRL+ALT Project Thumbnail"
+                        class="h-full w-full object-cover"
+                    />
+                </div>
+                <div class="project-thumbnail aspect-3/4 overflow-hidden rounded-2xl object-cover">
+                    <Picture
+                        src={ecozoic}
+                        alt="Ecozoic Project Thumbnail"
+                        class="h-full w-full object-cover"
+                    />
+                </div>
+                <div class="project-thumbnail aspect-3/4 overflow-hidden rounded-2xl object-cover">
+                    <Picture
+                        src={chimie}
+                        alt="Chimie Project Thumbnail"
+                        class="h-full w-full object-cover"
+                    />
+                </div>
+            </div>
+        </div>
     </div>
 </Layout>

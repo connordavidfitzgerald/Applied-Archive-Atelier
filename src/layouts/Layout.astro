@@ -5,6 +5,9 @@ import { SEO } from 'astro-seo';
 import { defaultSeo } from '@data/seo';
 import { getSeo } from '@scripts/utils/seo';
 import Icon from '../components/Icon/Icon.astro';
+import chimie from 'src/assets/images/chimie/chimie_friends.jpg';
+import brique from 'src/assets/images/brique/briquemock.jpg';
+import { Picture } from 'astro:assets';
 
 interface Props {
     title: string;
@@ -34,33 +37,35 @@ const FONTS: CssVariable[] = ['--custom-font-sans'];
     <body>
         <script src="../scripts/app.ts"></script>
 
-        <div class="container grid grid-cols-2 py-fluid-md">
-            <div>
-                <Icon name="logo" />
+        <nav
+            class="fixed z-50 container flex items-start justify-center py-fluid-xs pt-4 align-middle text-[12px] font-normal tracking-tight"
+        >
+            <div class="flex h-fit w-fit gap-1">
+                <a class="rounded-xl bg-[#EEEEEE] pt-2 pr-5 pb-2 pl-5 hover:bg-[#00FF3C]" href="/"
+                    >Projects</a
+                >
+                <a
+                    class="rounded-xl bg-[#EEEEEE] pt-2 pr-5 pb-2 pl-5 hover:bg-[#00FF3C]"
+                    href="/about">Information</a
+                >
+                <a class="rounded-xl bg-[#EEEEEE] pt-2 pr-5 pb-2 pl-5 hover:bg-[#00FF3C]" href="/"
+                    >Contact</a
+                >
             </div>
-            <nav class="flex gap-gutter justify-self-end">
-                <a href="/">Index</a>
-                <a href="/about">About</a>
-                <a href="/post">The post</a>
-            </nav>
-        </div>
+
+            <div class="absolute inset-x-3 h-fit w-fit">
+                <a
+                    class="rounded-xl bg-[#EEEEEE] pt-2 pr-5 pb-2 pl-5 text-[12px] font-bold tracking-[-3%] hover:bg-[#00FF3C]"
+                    href="/">Applied Archive Atelier</a
+                >
+            </div>
+        </nav>
 
         <main id="swup" class="transition-fade">
             <div id="content">
                 <slot />
             </div>
         </main>
-
-        <footer class="container flex justify-between py-fluid-xs">
-            <div>
-                &copy;{new Date().getFullYear()}
-            </div>
-
-            <nav class="flex gap-gutter">
-                <a href="/">Index</a>
-                <a href="/about">About</a>
-            </nav>
-        </footer>
 
         <script>
             import { setViewportSize } from '@scripts/utils/setViewportSize';

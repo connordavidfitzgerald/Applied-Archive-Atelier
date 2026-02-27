@@ -1,0 +1,252 @@
+---
+import Layout from '@layouts/Layout.astro';
+import Icon from '@components/Icon/Icon.astro';
+import Blocks from '@components/Blocks/Blocks.astro';
+import Image from '@components/Image/Image.astro';
+import chimieWall from '@images/chimie/chimiewall.png';
+import chimieLogo from '@images/chimie/chimielogo.png';
+import imgHalfOne from '@images/chimie/chimiecard1.png';
+import imgHalfTwo from '@images/chimie/chimiecard2.png';
+import imgTwo from '@images/chimie/chimiepalette.png';
+import imgThree from '@images/chimie/chimieig.png';
+import imgFour from '@images/chimie/noseguide.png';
+import imgFive from '@images/chimie/poster_mock.png';
+import window from '@images/chimie/chimiewindow.png';
+import friends from '@images/chimie/chimie_friends.jpg';
+import phone from '@images/chimie/chimie_phone.png';
+import { Vimeo } from 'astro-embed';
+import { Picture } from 'astro:assets';
+import { MuxPlayer } from '@mux/mux-player-astro';
+
+// Define the blocks for this post. This could be fetched from a CMS.
+const blocks = [
+    {
+        type: 'text',
+        data: {
+            body: `<p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Itaque quam, nam omnis sunt laudantium tenetur obcaecati? Inventore eos vitae id repellat cum possimus voluptates nam voluptatum, assumenda, atque nesciunt debitis?</p>`
+        }
+    },
+    {
+        type: 'image',
+        data: {
+            src: 'https://locomotive.ca/uploads/careers/fullscreen-image-2000w.jpg',
+            alt: 'An image',
+            caption: 'Image caption'
+        }
+    },
+    { type: 'text', data: { body: '<p>This a content block</p>' } },
+    {
+        type: 'text',
+        data: {
+            body: `<p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Itaque quam, nam omnis sunt laudantium tenetur obcaecati? Inventore eos vitae id repellat cum possimus voluptates nam voluptatum, assumenda, atque nesciunt debitis?</p>`
+        }
+    }
+];
+---
+
+<Layout title="Chimie">
+    <header class="flex h-fit w-full flex-col items-center justify-center gap-20 pt-96 pr-3 pl-3">
+        <div
+            class="grid grid-cols-12 gap-3 text-center text-[60px] leading-[100%] font-bold tracking-tighter"
+        >
+            <div class="col-span-6 col-start-4 pb-5">
+                An artisanal perfume studio with a focus on community.
+            </div>
+        </div>
+        <div
+            class="flex flex-row items-center justify-items-center gap-1 pb-80 text-[16px] leading-5 tracking-[-0.03em]"
+        >
+            <div
+                class="flex rounded-full bg-gray-100 pt-2 pr-5 pb-2 pl-5 text-center font-normal text-black"
+            >
+                Brand Identity
+            </div>
+            <div
+                class="flex rounded-full bg-gray-100 pt-2 pr-5 pb-2 pl-5 text-center font-normal text-black"
+            >
+                Social Strategy
+            </div>
+            <div
+                class="flex rounded-full bg-gray-100 pt-2 pr-5 pb-2 pl-5 text-center font-normal text-black"
+            >
+                Web Design
+            </div>
+        </div>
+
+        <Image
+            src={chimieLogo}
+            alt="Chimie logo on cement wall"
+            class="col-span-12 w-full overflow-clip rounded-2xl"
+        />
+
+        <div class="pt-52 pr-3 pl-3">
+            <div
+                class="h-fit w-full items-center justify-center pb-10 text-center text-[16px] font-medium tracking-tight"
+            >
+                Project Information
+            </div>
+            <div class="grid grid-cols-12 gap-gutter pb-72">
+                <div
+                    class="col-span-8 col-start-3 text-center text-[42px] leading-[100%] font-bold tracking-tighter text-black"
+                >
+                    Chimie approached Applied Archive Atelier to build a complete brand universe for
+                    their artisanal perfume studio. What began as an identity project evolved into a
+                    multi-year partnership encompassing everything from e-commerce to sold-out
+                    experiential events.
+                </div>
+            </div>
+        </div>
+    </header>
+    <div class="grid grid-cols-12 gap-3 pr-3 pb-3 pl-3">
+        <div class="col-span-9 flex flex-col gap-3">
+            <div class="h-fit w-full">
+                <Picture
+                    src={chimieWall}
+                    alt="Chimie logo on cement wall"
+                    class="rounded-2xl"
+                    aspect="1.77777778"
+                />
+            </div>
+
+            <div class="flex h-fit w-full overflow-clip rounded-2xl">
+                <MuxPlayer
+                    playbackId="EjtvO56UPgsw5A5aaEx2f7qqkIF3krHtX8SuUKPJ8J00"
+                    autoplay="muted"
+                    loop
+                    style="--controls:none;--media-object-fit: cover"
+                />
+            </div>
+
+            <div class="h-fit w-full">
+                <Picture
+                    src={imgTwo}
+                    alt="Chimie logo on cement wall"
+                    class="rounded-2xl"
+                    aspect="1.77777778"
+                />
+            </div>
+
+            <div class="h-fit w-full">
+                <Picture
+                    src={window}
+                    alt="Chimie logo on cement wall"
+                    class="rounded-2xl"
+                    aspect="1.77777778"
+                />
+            </div>
+
+            <div class="h-fit w-full">
+                <Picture
+                    src={friends}
+                    alt="Chimie logo on cement wall"
+                    class="rounded-2xl"
+                    aspect="1.77777778"
+                />
+            </div>
+
+            <!--
+                <div class="h-fit w-full flex flex-row gap-x-3">
+                    <Picture
+                        src={imgHalfOne}
+                        alt="Chimie logo on cement wall"
+                        class="rounded-2xl"
+                        aspect="1.77777778"
+                    />
+                    <Picture
+                        src={imgHalfTwo}
+                        alt="Chimie logo on cement wall"
+                        class="rounded-2xl"
+                        aspect="1.77777778"
+                    />
+                </div>
+                -->
+
+            <div class="h-fit w-full">
+                <Picture
+                    src={imgThree}
+                    alt="Chimie logo on cement wall"
+                    class="rounded-2xl"
+                    aspect="1.77777778"
+                />
+            </div>
+
+            <div class="h-fit w-full">
+                <Picture
+                    src={imgFour}
+                    alt="Chimie logo on cement wall"
+                    class="rounded-2xl"
+                    aspect="1.77777778"
+                />
+            </div>
+
+            <div class="flex w-full flex-row gap-x-3">
+                <div class="flex w-[50%] overflow-hidden rounded-2xl border-0">
+                    <div class="flex h-full scale-105 bg-white">
+                        <MuxPlayer
+                            playbackId="5T1T01WC5QZ96bB01WF6KnhBKUflYKL1002ZDgxR5BB4tI"
+                            autoplay="muted"
+                            loop
+                            aspect="0.888888889"
+                            style="--controls:none;--media-object-fit: cover"
+                        />
+                    </div>
+                </div>
+                <div class="flex w-[50%] overflow-hidden rounded-2xl border-0">
+                    <div class="flex h-full bg-white">
+                        <Picture src={phone} alt="Chimie Mobile" style="width:100%;" />
+                    </div>
+                </div>
+            </div>
+            <div class="flex overflow-hidden rounded-2xl bg-white">
+                <MuxPlayer
+                    playbackId="r2mqyvqac9X02QNaL1qGNBVN2ndXzkRAB6xR2n1sIS004"
+                    autoplay="muted"
+                    loop
+                    style="--controls:none;--media-object-fit: cover"
+                />
+            </div>
+            <div class="flex h-fit w-full overflow-clip rounded-2xl">
+                <MuxPlayer
+                    playbackId="vhOnv7pY012ceCg93rz8t02cH00s3HDPfcfLZJJcuoWcIo"
+                    autoplay="muted"
+                    loop
+                    style="--controls:none;--media-object-fit: cover"
+                />
+            </div>
+        </div>
+        <div
+            class="sticky top-4 col-span-3 flex h-fit flex-col rounded-2xl bg-gray-100 p-6 text-[13px]"
+        >
+            <div class="flex flex-col gap-0 leading-4">
+                <p class="font-medium text-black">Challenge</p>
+                <p class="pb-10 font-normal text-[#4D4D4D]">
+                    Establish Chimie as a serious player in the artisanal perfume world<br />
+                    Create a cohesive brand across digital, print, and physical experience<br />
+                    Build community through events and social presence<br />
+                    Launch e-commerce that reflects the tactile, sensory nature of perfume<br />
+                </p>
+
+                <div class="flex flex-col gap-0">
+                    <p class="font-medium text-black">Credits</p>
+                    <p class="pb-48 font-normal text-[#4D4D4D]">
+                        Creative Direction, Graphic Design, Web Design:<br />
+                        Jean-Julien Hazoumé
+                    </p>
+                </div>
+                <div class="flex flex-row gap-4">
+                    <div>
+                        <p class="font-medium text-black">Date</p>
+                        <p class="font-normal text-[#4D4D4D]">2023</p>
+                    </div>
+                    <div>
+                        <p class="font-medium text-black">Links</p>
+                        <div class="flex flex-row gap-3">
+                            <a class="font-normal text-[#4D4D4D] underline"> Instagram </a>
+                            <a class="font-normal text-[#4D4D4D] underline"> Website </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</Layout>

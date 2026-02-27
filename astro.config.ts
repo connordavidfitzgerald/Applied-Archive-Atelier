@@ -38,7 +38,7 @@ export default defineConfig({
         fonts: [
             {
                 provider: 'local',
-                name: 'Source Sans Pro',
+                name: 'Favorit',
                 cssVariable: '--custom-font-sans',
                 fallbacks: ['sans-serif'],
                 variants: [
@@ -46,13 +46,13 @@ export default defineConfig({
                         weight: 400,
                         style: 'normal',
                         display: 'swap',
-                        src: ['./src/assets/fonts/SourceSans3-Regular.woff2']
+                        src: ['./src/assets/fonts/ABCFavorit-Book.ttf']
                     },
                     {
-                        weight: 700,
+                        weight: 500,
                         style: 'normal',
                         display: 'swap',
-                        src: ['./src/assets/fonts/SourceSans3-Bold.woff2']
+                        src: ['./src/assets/fonts/ABCFavorit-Medium.ttf']
                     }
                 ]
             }
