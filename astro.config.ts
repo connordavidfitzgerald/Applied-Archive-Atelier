@@ -46,18 +46,21 @@ export default defineConfig({
                         weight: 400,
                         style: 'normal',
                         display: 'swap',
+                        preload: true,
                         src: ['./src/assets/fonts/ABCFavorit-Book.ttf']
                     },
                     {
                         weight: 500,
                         style: 'normal',
                         display: 'swap',
-                        src: ['./src/assets/fonts/ABCFavorit-Medium.ttf']
+                        src: ['./src/assets/fonts/ABCFavorit-Medium.ttf'],
+                        preload: true
                     },
                     {
                         weight: 700,
                         style: 'normal',
                         display: 'swap',
+                        preload: true,
                         src: ['./src/assets/fonts/ABCFavorit-Bold.ttf']
                     }
                 ]
