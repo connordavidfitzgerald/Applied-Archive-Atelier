@@ -46,19 +46,19 @@ export default defineConfig({
                         weight: 400,
                         style: 'normal',
                         display: 'swap',
-                        src: ['./public/fonts/ABCFavorit-Book.ttf']
+                        src: ['./public/fonts/FavoritPro-Regular.otf']
                     },
                     {
                         weight: 500,
                         style: 'normal',
                         display: 'swap',
-                        src: ['./public/fonts/ABCFavorit-Medium.ttf']
+                        src: ['./public/fonts/FavoritPro-Medium.otf']
                     },
                     {
                         weight: 700,
                         style: 'normal',
                         display: 'swap',
-                        src: ['./public/fonts/ABCFavorit-Bold.ttf']
+                        src: ['./public/fonts/FavoritPro-Bold.otf']
                     }
                 ]
             }
