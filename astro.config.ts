@@ -38,7 +38,7 @@ export default defineConfig({
         fonts: [
             {
                 provider: 'local',
-                name: 'Favorit',
+                name: 'ABC Favorit',
                 cssVariable: '--custom-font-sans',
                 fallbacks: ['sans-serif'],
                 variants: [
@@ -53,6 +53,12 @@ export default defineConfig({
                         style: 'normal',
                         display: 'swap',
                         src: ['./src/assets/fonts/ABCFavorit-Medium.ttf']
+                    },
+                    {
+                        weight: 700,
+                        style: 'normal',
+                        display: 'swap',
+                        src: ['./src/assets/fonts/ABCFavorit-Bold.ttf']
                     }
                 ]
             }
