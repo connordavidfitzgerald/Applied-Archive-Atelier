@@ -40,7 +40,7 @@ export default defineConfig({
                 provider: 'local',
                 name: 'ABC Favorit',
                 cssVariable: '--custom-font-sans',
-                fallbacks: ['sans-serif'],
+                fallbacks: [],
                 variants: [
                     {
                         weight: 400,
